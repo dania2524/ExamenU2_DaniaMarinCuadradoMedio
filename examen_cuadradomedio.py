@@ -1,18 +1,20 @@
+print(" MÉTODO DEL CUADRADO MEDIO ")
 
-print("METODO DEL CUADRADO MEDIO")
-print("")
-
-def cuadrado_medio(seed,n_numeros):
-    cuadrado = str(seed ** 2).zfill(2 * n_numeros)  
-   
-    inicio = (len(cuadrado) - n_numeros) // 2 
-    
-    nuevo = int(cuadrado[inicio:inicio + n_numeros])  
-   
+def cuadrado_medio(seed, n_digitos): 
+    cuadrado = str(seed ** 2).zfill(2 * n_digitos)  
+    inicio = (len(cuadrado) - n_digitos) // 2        
+    nuevo = int(cuadrado[inicio:inicio + n_digitos]) 
     return nuevo
 
 
-semilla = int(input("Ingrese se semilla inicial:"))
-n_numeros = int(input("Ingrese la cantidad de digitos a utilizar:"))
-resultado = cuadrado_medio(semilla, 4) 
-print("Nueva semilla:", resultado)  
+semilla = int(input("Ingrese la semilla inicial: "))
+n_digitos = int(input("Ingrese la cantidad de dígitos de la semilla: "))
+n = int(input("¿Cuántos números pseudoaleatorios desea generar?: "))
+
+print("\nGenerando números...\n")
+
+for i in range(n):
+    nueva_semilla = cuadrado_medio(semilla, n_digitos)
+    numero_pseudo = nueva_semilla / (10 ** n_digitos)  
+    print(f"{i+1}. Semilla: {semilla} Pseudoaleatorio: {numero_pseudo}")
+    semilla = nueva_semilla  
